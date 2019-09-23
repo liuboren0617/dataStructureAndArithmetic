@@ -10,6 +10,7 @@ import java.util.Arrays;
  */
 public class BubbleSort {
     public static void main(String[] args) {
+        /*可替换的数组的数字 => 3,1,4,2,14,3,43,32,10,999,888,6465,10005,19*/
         int [] nums = {3,2,1};
         int [] nums1 = {3,2,1};
 
@@ -41,7 +42,7 @@ public class BubbleSort {
         System.out.println("count1 = " + count1);
         System.out.println("nums = " + Arrays.toString(nums));
         System.out.println("nums = " + Arrays.toString(nums1));
-/*3,1,4,2,14,3,43,32,10,999,888,6465,10005,19*/
+
         int [] nums2 = {3,2,1};
         int count2 = 0;
         for (int i = nums2.length - 1 ; i > 1; i--) {

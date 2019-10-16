@@ -21,11 +21,11 @@ public class SelectSort {
                 if (nums[j] < nums[tempIndex]){
                     tempIndex = j;
                 }
-                /* 交换当前数字与之前最左边数字的位置*/
-                int tempNum = nums[i];
-                nums[i] = nums[tempIndex];
-                nums[tempIndex] = tempNum;
             }
+            /* 交换当前数字与之前最左边数字的位置*/
+            int tempNum = nums[i];
+            nums[i] = nums[tempIndex];
+            nums[tempIndex] = tempNum;
         }
         System.out.println("选择排序后的nums = " + Arrays.toString(nums));
     }

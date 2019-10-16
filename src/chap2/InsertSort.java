@@ -1,6 +1,7 @@
 package src.chap2;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author liuboren
@@ -10,7 +11,12 @@ import java.util.Arrays;
  */
 public class InsertSort {
     public static void main(String[] args) {
-        int [] nums = {3,1,4,2,14,3,43,32,10,999,888,6465,10005,19};
+        int[] nums = new int [30000];
+        Random r = new Random(1);
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] =  r.nextInt();
+        }
+        long startTime = System.currentTimeMillis();
         /*外层循环,从1开始,因为要和左边的数字比较*/
         for (int out = 1; out < nums.length; out++) {
             int in = out;
@@ -24,7 +30,8 @@ public class InsertSort {
             /*没有数字比最开始比较的值大的时候,将最开始比较的值插入当前下标*/
             nums[in] = tempNum;
         }
-
+        long endTime = System.currentTimeMillis() - startTime;
+        System.out.println("endTime = " + endTime);
         System.out.println("nums = " + Arrays.toString(nums));
     }
 }

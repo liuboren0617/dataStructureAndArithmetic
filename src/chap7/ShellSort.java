@@ -34,6 +34,10 @@ public class ShellSort {
                 while (inner > h - 1 && nums[inner - h] > temp) {
                     nums[inner] = nums[inner - h];
                     // 等价于 inner = inner - h
+                    /* 相当于每走一次while  比较的是 同一个间隔内的值
+                     [1,2,3,4,5,6,7,8,9] 例如第一次比较8和4
+                     那么第二次比较的就是4和0 ,while循环比较的是间隔为4的[0,4,8]
+                     */
                     inner -= h;
                 }
                 nums[inner] = temp;

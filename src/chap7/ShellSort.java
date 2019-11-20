@@ -24,8 +24,8 @@ public class ShellSort {
             h = 3 * h + 1;
         }
 
-        int inner = 0;
-        int temp = 0;
+        int inner ;
+        int temp ;
         while (h > 0) {
             for (int outer = h; outer < nums.length; outer++) {
                 inner = outer;

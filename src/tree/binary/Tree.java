@@ -7,7 +7,7 @@ package tree.binary;
  * @date 2019/11/28 9:38
  */
 public class Tree {
-
+    // 根节点
     Node root;
 
     public Tree(Node root) {
@@ -70,10 +70,27 @@ public class Tree {
 
     public void delete(int deleteData) {
         Node currentNode = root;
-        while (true){
-            if(deleteData == currentNode.sortData){
-                while (currentNode!=null){
+        while (true) {
+            // 找到删除节点的情况
+            if (deleteData == currentNode.sortData) {
+                // todo 这里要分被写没有子节点、有一个子节点、有两个子节点的情况
+                if (currentNode.rightNode != null) {
                     currentNode = currentNode.leftNode;
+                }
+
+            } else if (deleteData < currentNode.sortData) {
+                if (currentNode.leftNode != null) {
+                    currentNode = currentNode.leftNode;
+                } else {
+                    System.out.println("删除的节点不存在");
+                    break;
+                }
+            } else {
+                if (currentNode.rightNode != null) {
+                    currentNode = currentNode.rightNode;
+                } else {
+                    System.out.println("删除的节点不存在");
+                    break;
                 }
 
             }

@@ -1,4 +1,4 @@
-package tree.binary;
+package src.tree.binary;
 
 /**
  * @author liuboren
@@ -68,35 +68,84 @@ public class Tree {
         }
     }
 
-    public void delete(int deleteData) {
-        Node currentNode = root;
-        while (true) {
-            // 找到删除节点的情况
-            if (deleteData == currentNode.sortData) {
-                // todo 这里要分被写没有子节点、有一个子节点、有两个子节点的情况
-                if (currentNode.rightNode != null) {
-                    currentNode = currentNode.leftNode;
-                }
-
-            } else if (deleteData < currentNode.sortData) {
-                if (currentNode.leftNode != null) {
-                    currentNode = currentNode.leftNode;
-                } else {
-                    System.out.println("删除的节点不存在");
-                    break;
+    public boolean delete(int deleteData) {
+        Node curr = root;
+        Node parent = root;
+        boolean isLeft = true;
+        while (deleteData != curr.sortData) {
+            if (deleteData <= curr.sortData) {
+                isLeft = true;
+                if (curr.leftNode != null) {
+                    parent = curr;
+                    curr = curr.leftNode;
                 }
             } else {
-                if (currentNode.rightNode != null) {
-                    currentNode = currentNode.rightNode;
-                } else {
-                    System.out.println("删除的节点不存在");
-                    break;
+                isLeft = false;
+                if (curr.rightNode != null) {
+                    parent = curr;
+                    curr = curr.rightNode;
                 }
-
+            }
+            if (curr == null) {
+                return false;
             }
         }
+        // 删除节点没有子节点的情况
+        if (curr.leftNode == null && curr.rightNode == null) {
+            if (curr == root) {
+                root = null;
+            } else if (isLeft) {
+                parent.leftNode = null;
+            } else {
+                parent.rightNode = null;
+            }
+            //删除节点只有左节点
+        } else if (curr.rightNode == null) {
+            if (curr == root) {
+                root = root.leftNode;
+            } else if (isLeft) {
+                parent.leftNode = curr.leftNode;
+            } else {
+                parent.rightNode = curr.leftNode;
+            }
+            //如果被删除节点只有右节点
+        } else if (curr.leftNode == null) {
+            if (curr == root) {
+                root = root.rightNode;
+            } else if (isLeft) {
+                parent.leftNode = curr.rightNode;
+            } else {
+                parent.rightNode = curr.rightNode;
+            }
+        } else {
+            Node successor = getSuccessor(curr);
+            if (curr == root) {
+                root = successor;
+            } else if (curr == parent.leftNode) {
+                parent.leftNode = successor;
+            } else {
+                parent.rightNode = successor;
+            }
+            successor.leftNode = curr.leftNode;
+        }
+        return true;
 
+    }
 
+    public Node getSuccessor(Node delNode) {
+        Node curr = delNode.rightNode;
+        Node successor = curr;
+        Node sucParent = null;
+        while (curr != null) {
+            sucParent = successor;
+            successor = curr;
+            curr = curr.leftNode;
+        }
+        if (successor != delNode.rightNode) {
+            sucParent.leftNode = successor.rightNode;
+            successor.rightNode = delNode.rightNode;
+        }
+        return successor;
     }
 
 

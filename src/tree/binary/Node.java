@@ -1,4 +1,4 @@
-package tree.binary;
+package src.tree.binary;
 
 /**
  * @author liuboren
